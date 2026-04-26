@@ -374,7 +374,60 @@
     font-weight: 300;
   }
 
-  /* ANIMATIONS */
+  .cool-mode-btn {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+    border: 1px solid var(--ink-muted);
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .cool-mode-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  /* COOL MODE OVERRIDES */
+  body.cool-mode {
+    --ink: #00ff41;
+    --ink-muted: #00cc33;
+    --ink-faint: #009922;
+    --paper: #1a0030;
+    --paper-warm: #220040;
+    --accent: #00ff41;
+    --accent-light: #0d0020;
+  }
+
+  body.cool-mode nav {
+    background: rgba(26,0,48,0.92);
+  }
+
+  body.cool-mode .btn-primary {
+    background: #00ff41;
+    color: #1a0030;
+  }
+
+  body.cool-mode .btn-primary:hover {
+    background: #00cc33;
+  }
+
+  body.cool-mode .cool-mode-btn {
+    border-color: #00cc33;
+    color: #00cc33;
+  }
+
+  body.cool-mode .cool-mode-btn:hover {
+    border-color: #00ff41;
+    color: #00ff41;
+  }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -408,6 +461,7 @@
     <li><a href="#publications">Publications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="cool-mode-btn" onclick="toggleCoolMode()">Cool Mode</button>
 </nav>
 
 <!-- HERO -->
@@ -489,6 +543,12 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function toggleCoolMode() {
+    document.body.classList.toggle('cool-mode');
+    const btn = document.querySelector('.cool-mode-btn');
+    btn.textContent = document.body.classList.contains('cool-mode') ? 'Boring Mode' : 'Cool Mode';
+  }
 </script>
 
 </body>
